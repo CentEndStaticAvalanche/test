@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitt i den Eviga Färden · Chapter 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #222222;
+  --screen:     #1a1a1a;
+  --panel:      #141414;
+  --surface:    #202020;
+  --border:     #383838;
+  --border-dim: #2c2c2c;
+  --text:       #d4d4d4;
+  --text-mid:   #999999;
+  --text-dim:   #666666;
+  --white:      #e8e8e8;
+  --red:        #c0392b;
+  --rule:       #444444;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'IM Fell English', Georgia, serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow: hidden;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.12) 2px,
+      rgba(0,0,0,0.12) 4px
+    ),
+    url('../../background/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: var(--bg);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.09'/%3E%3C/svg%3E");
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+.page {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  background: rgba(26, 26, 26, 0.82);
+  padding-bottom: 56px;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 32px;
+  border: 3px solid var(--red);
+  min-height: calc(100vh - 120px);
+}
+
+.cover-img {
+  width: 100%;
+  aspect-ratio: 5/1;
+  min-height: 100px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.header-block {
+  text-align: center;
+  padding: 32px 0 0;
+}
+
+.site-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 40px rgba(255,255,255,0.08);
+}
+
+.site-tagline {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.site-sub-info {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 0.85rem;
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  margin-top: 1px;
+  background: #0a0a0a;
+}
+
+.nav-bar a {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  text-decoration: none;
+  padding: 11px 14px;
+  min-width: 118px;
+  text-align: center;
+  border-right: 1px solid var(--border-dim);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nav-bar a:first-child { border-left: 1px solid var(--border-dim); }
+.nav-bar a:hover, .nav-bar a.active {
+  background: var(--white);
+  color: var(--bg);
+}
+
+.divider-white-thick {
+  border: none;
+  border-top: 3px solid #ffffff;
+  display: block;
+}
+.divider-red-full {
+  border: none;
+  border-top: 2px solid var(--red);
+  display: block;
+}
+
+.section-heading {
+  text-align: center;
+  margin: 36px 0 20px;
+}
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--white);
+  line-height: 1.35;
+}
+
+.notices-text {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: var(--text-mid);
+  text-align: center;
+  hyphens: auto;
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  background: var(--panel);
+  margin-bottom: 8px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.cat-heading { text-align: center; margin: 32px 0 16px; }
+.cat-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1.15rem;
+  color: var(--white); letter-spacing: 0.05em;
+}
+.catalogue {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 18px 28px;
+  max-width: 600px; margin: 0 auto 8px;
+  font-family: 'Special Elite', monospace;
+}
+.catalogue ul { list-style: none; margin: 0; padding: 0; }
+.catalogue > ul > li { margin: 12px 0; }
+.catalogue a { text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+.catalogue .cat-l1 { font-size: 0.82rem; letter-spacing: 0.12em; color: var(--white); text-transform: uppercase; }
+.catalogue a:hover { color: var(--red); }
+.catalogue .toc-line { display: flex; align-items: baseline; }
+.catalogue .toc-line .leader {
+  flex: 1 1 auto; min-width: 24px; margin: 0 8px;
+  border-bottom: 2px dotted #555555; transform: translateY(-0.28em);
+}
+
+.custom-red-box {
+  border: 1px solid var(--border);
+  background: #0d0d0d;
+  padding: 20px;
+  margin-top: 32px;
+  color: #ffffff;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.custom-black-box {
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  padding: 32px 40px;
+  margin-top: 28px;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 2;
+  text-align: justify;
+}
+.custom-black-box p {
+  text-indent: 2em;
+  margin-bottom: 1.5em;
+}
+.custom-black-box p:last-child {
+  margin-bottom: 0;
+}
+
+.article-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-dim);
+}
+.article-btn {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.article-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--surface);
+}
+
+.page-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 10px auto 0;
+  padding: 0 4px;
+}
+.page-action-btn {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e8e8e8;
+  background: transparent;
+  border: 1px solid rgba(232,232,232,0.3);
+  padding: 5px 16px;
+  min-width: 92px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.page-action-btn:hover { color: var(--red); border-color: var(--red); }
+.page-action-btn { display: grid; place-items: center; }
+.page-action-btn .lbl-normal,
+.page-action-btn .lbl-hover { grid-column: 1; grid-row: 1; }
+.page-action-btn .lbl-hover { visibility: hidden; }
+.page-action-btn:hover .lbl-normal { visibility: hidden; }
+.page-action-btn:hover .lbl-hover { visibility: visible; }
+
+.end-mark {
+  text-align: center;
+  padding: 20px 0 16px;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.8;
+}
+.end-mark .ornament { display: block; font-size: 1.1rem; margin-bottom: 6px; }
+
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 10, 10, 0.92);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px);
+  backdrop-filter: blur(3px);
+}
+.gate-overlay.hidden, .hidden { display: none !important; }
+html.cent-unlocked .gate-overlay { display: none !important; }
+html.cent-unlocked #mainPage { visibility: visible !important; }
+html.cent-checking .gate-overlay { display: none !important; }
+
+.gate-modal {
+  width: 100%;
+  max-width: 460px;
+  background: var(--screen);
+  border: 3px solid var(--red);
+  padding: 32px 30px 28px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(0,0,0,0.7);
+}
+.gate-ornament { font-family: 'Special Elite', monospace; font-size: 1.2rem; color: var(--red); margin-bottom: 14px; }
+.gate-title { font-family: 'IM Fell English', Georgia, serif; font-size: 1.02rem; line-height: 1.8; color: var(--text); margin-bottom: 22px; }
+.gate-input-row { position: relative; margin-bottom: 22px; }
+.gate-input {
+  width: 100%; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--red);
+  color: var(--text); font-family: 'Special Elite', monospace; font-size: 0.95rem; letter-spacing: 0.12em; padding: 12px 44px 12px 16px; outline: none;
+}
+.gate-input:focus { border-color: var(--red); }
+.gate-eye { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; font-size: 1.1rem; color: var(--text-mid); padding: 6px; }
+.gate-eye:hover { color: var(--red); }
+.gate-error { min-height: 1.2em; font-family: 'Special Elite', monospace; font-size: 0.72rem; color: var(--red); margin: -12px 0 16px; opacity: 0; transition: opacity 0.15s; }
+.gate-error.show { opacity: 1; }
+.gate-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.gate-btn {
+  font-family: 'Special Elite', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text);
+  background: transparent; border: 1px solid var(--border); padding: 11px 18px; cursor: pointer; flex: 1 1 auto; min-width: 160px; display: grid; place-items: center;
+}
+.gate-btn .gate-lbl-normal, .gate-btn .gate-lbl-hover { grid-column: 1; grid-row: 1; }
+.gate-btn .gate-lbl-hover { visibility: hidden; }
+.gate-btn:hover { color: var(--bg); background: var(--white); border-color: var(--white); }
+.gate-btn:hover .gate-lbl-normal { visibility: hidden; }
+.gate-btn:hover .gate-lbl-hover { visibility: visible; }
+.gate-btn.gate-btn-confirm:hover { color: #fff; background: var(--red); border-color: var(--red); }
+
+.gate-welcome-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: var(--white); margin-bottom: 24px; line-height: 1.4; }
+.gate-enter-btn { font-family: 'Special Elite', monospace; font-size: 0.78rem; letter-spacing: 0.12em; color: var(--text); background: transparent; border: 1px solid var(--red); padding: 13px 22px; cursor: pointer; line-height: 1.5; }
+.gate-enter-btn:hover { color: #fff; background: var(--red); }
+
+.raccoon-modal-overlay {
+  position: fixed; inset: 0; z-index: 10005; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+}
+.raccoon-modal-overlay.show { opacity: 1; pointer-events: auto; }
+.raccoon-modal { background: var(--screen); border: 2px solid var(--red); padding: 30px; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+.raccoon-modal-text { font-size: 1rem; color: var(--white); margin-bottom: 24px; line-height: 1.6; }
+.raccoon-modal-btns { display: flex; gap: 12px; justify-content: center; }
+.raccoon-btn { font-family: 'IM Fell English', serif; background: transparent; border: 1px solid var(--border); color: var(--text); padding: 8px 20px; cursor: pointer; min-width: 110px; transition: all 0.15s; }
+.raccoon-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+
+@media (max-width: 600px) {
+  .inner { padding: 16px; }
+  .notices-text { margin-left: 0; margin-right: 0; }
+  .custom-black-box { padding: 20px; }
+  .nav-bar a { padding: 11px 10px; min-width: 92px; }
+  .gate-modal { padding: 26px 20px 22px; }
+  .gate-btn { min-width: 100%; }
+}
+
+.sub-heading { margin: 38px 0 14px; text-align: center; scroll-margin-top: 16px; }
+.sub-heading h3 {
+  font-family: 'Special Elite', monospace;
+  font-weight: 400; font-size: 1.35rem;
+  color: var(--white); letter-spacing: 0.12em;
+}
+.sub-heading h3 .mark { color: var(--red); }
+.custom-black-box p.fin {
+  text-indent: 0;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: var(--text-mid);
+  margin-top: 2em;
+}
+
+.article-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-dim);
+}
+.article-btn {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  min-height: 56px;
+  text-align: center;
+  line-height: 1.3;
+}
+.article-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--surface);
+}
+.chapter-select { position: relative; display: flex; }
+.chapter-select-btn { width: 100%; }
+.chapter-select-btn .cs-name { font-size: 0.85rem; letter-spacing: 0.04em; }
+.chapter-select-btn .cs-count {
+  font-size: 0.72rem;
+  color: var(--text-mid);
+  letter-spacing: 0.12em;
+}
+.chapter-select-btn:hover .cs-count { color: var(--red); }
+.chapter-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max(230px, 100%);
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--red);
+  box-shadow: 0 0 30px rgba(0,0,0,0.75);
+  display: none;
+  z-index: 60;
+  font-family: 'Special Elite', monospace;
+}
+.chapter-menu.open { display: block; }
+.chapter-menu a {
+  display: block;
+  padding: 9px 18px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--text-mid);
+  text-decoration: none;
+  text-align: left;
+  border-bottom: 1px solid var(--border-dim);
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+.chapter-menu a:last-child { border-bottom: none; }
+.chapter-menu a:hover { background: var(--surface); color: var(--red); }
+.chapter-menu a.current { color: var(--white); background: #0a0a0a; }
+@media (max-width: 600px) {
+  .article-nav { gap: 8px; }
+  .article-btn { padding: 8px 6px; font-size: 0.74rem; min-height: 52px; }
+  .chapter-select-btn .cs-name { font-size: 0.74rem; }
+  .chapter-select-btn .cs-count { font-size: 0.66rem; }
+}
+
+/* ===== Fixed top-left back button ===== */
+.back-fab {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10000;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px 8px 11px;
+  background: rgba(10, 10, 10, 0.82);
+  border: 1px solid var(--red, #c0392b);
+  color: var(--white, #e8e8e8);
+  text-decoration: none;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.back-fab:hover {
+  color: var(--red, #c0392b);
+  border-color: var(--red, #c0392b);
+  background: rgba(10, 10, 10, 0.92);
+}
+.back-fab .back-fab-arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  transition: transform 0.15s;
+}
+.back-fab:hover .back-fab-arrow { transform: translateX(-3px); }
+.back-fab .bf-hover { display: none; }
+.back-fab:hover .bf-normal { display: none; }
+.back-fab:hover .bf-hover { display: inline; }
+@media (max-width: 600px) {
+  .back-fab { top: 10px; left: 10px; padding: 6px 12px 6px 9px; font-size: 0.66rem; }
+}
+
+/* ===== [ADDED EFFECTS] ===== */
+
+/* ============================================================
+   [ADDED] 80s VHS 题图特效 (cover) — 来自 CentEnd
+   ============================================================ */
+.cover-container {
+  width: 100%;
+  aspect-ratio: 5/1;
+  min-height: 100px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+  cursor: default;
+  display: block;
+}
+.cover-container .cover-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  display: block;
+  border: none;
+  filter: grayscale(20%) contrast(1.1);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.cover-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),
+              linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+  background-size: 100% 4px, 6px 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.cover-container:hover .cover-img {
+  filter: grayscale(0%) contrast(1.4) saturate(1.5) hue-rotate(10deg);
+  transform: scale(1.01);
+}
+.cover-container::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 10px;
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  top: -20px;
+  z-index: 3;
+  pointer-events: none;
+}
+.cover-container:hover::after { animation: cover-bar-roll 1.2s linear infinite; }
+@keyframes cover-bar-roll { 0% { top: -20px; } 100% { top: 110%; } }
+
+/* ============================================================
+   [ADDED] 动态颗粒噪点 + CRT 偶尔扫过的白色横线 — 来自 CentEnd
+   ============================================================ */
+body::before {
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  animation: cs-grain-shift 0.6s steps(6) infinite;
+}
+@keyframes cs-grain-shift {
+  0%   { transform: translate(0,0); }
+  10%  { transform: translate(-3%,-4%); }
+  20%  { transform: translate(2%,3%); }
+  30%  { transform: translate(-2%,5%); }
+  40%  { transform: translate(4%,-2%); }
+  50%  { transform: translate(-5%,2%); }
+  60%  { transform: translate(3%,4%); }
+  70%  { transform: translate(-3%,-3%); }
+  80%  { transform: translate(5%,1%); }
+  90%  { transform: translate(-2%,-5%); }
+  100% { transform: translate(0,0); }
+}
+
+.cs-crt { position: fixed; inset: 0; pointer-events: none; z-index: 9998; }
+.cs-crt::before {
+  content: ''; position: absolute; inset: -10% 0;
+  background: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px,
+    rgba(0,0,0,0.18) 3px, rgba(0,0,0,0) 4px);
+  animation: cs-scan-drift 8s linear infinite;
+}
+.cs-crt::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 22%; top: -22%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0) 0%, rgba(232,232,232,0.035) 45%,
+    rgba(232,232,232,0.06) 50%, rgba(232,232,232,0.035) 55%,
+    rgba(255,255,255,0) 100%);
+  animation: cs-roll 9s cubic-bezier(.6,0,.4,1) infinite;
+}
+@keyframes cs-scan-drift { from { transform: translateY(0); } to { transform: translateY(8px); } }
+@keyframes cs-roll { 0%,70% { top: -22%; opacity: 0; } 72% { opacity: 1; } 100% { top: 110%; opacity: 1; } }
+
+.cs-flicker {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9997;
+  background: #000; opacity: 0; animation: cs-flicker-key 7s steps(1) infinite;
+}
+@keyframes cs-flicker-key {
+  0%,100% { opacity: 0; }
+  6% { opacity: 0.04; } 6.5% { opacity: 0; }
+  31% { opacity: 0.06; } 31.4% { opacity: 0; }
+  58% { opacity: 0.03; } 58.3% { opacity: 0; }
+  82% { opacity: 0.07; } 82.4% { opacity: 0; }
+}
+
+/* ============================================================
+   [ADDED] 温和换屏过渡 (VHS 溶解, 护眼, 不再每页白屏开机)
+   ============================================================ */
+.vhs-transition {
+  position: fixed; inset: 0; z-index: 10002;
+  background: #0a0a0a;
+  opacity: 0; visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+}
+.vhs-transition.show {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.45s ease, visibility 0s;
+}
+.vhs-transition::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px,
+    rgba(255,255,255,0.025) 3px, rgba(0,0,0,0) 4px);
+}
+.vhs-transition::after {
+  content: '';
+  position: absolute; left: 0; right: 0; height: 2px; top: 50%;
+  background: rgba(232,232,232,0.5);
+  box-shadow: 0 0 14px 2px rgba(232,232,232,0.35);
+  opacity: 0;
+}
+.vhs-transition.show::after { animation: vhs-soft-line 0.45s ease-out; }
+@keyframes vhs-soft-line {
+  0% { opacity: 0; transform: scaleX(0.3); }
+  35% { opacity: 0.9; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+/* ============================================================
+   [ADDED] 侧边弹出目录 (来自 story1)
+   ============================================================ */
+.cat-fab {
+  position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+  z-index: 6000; display: flex; align-items: center;
+  font-family: 'Special Elite', monospace;
+  pointer-events: none;
+}
+.cat-drawer {
+  width: min(300px, 78vw); max-height: 80vh; overflow-y: auto;
+  background: var(--panel); border: 2px solid var(--red);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.6); padding: 16px 18px 20px;
+  transform: translateX(112%); opacity: 0; visibility: hidden;
+  transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), opacity 0.32s ease;
+}
+.cat-fab.open .cat-drawer { transform: translateX(0); opacity: 1; visibility: visible; pointer-events: auto; }
+.cat-drawer-title {
+  text-align: center; font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1rem; color: var(--white); letter-spacing: 0.05em;
+  padding-bottom: 12px; margin-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.cat-drawer .catalogue { border: none; background: transparent; padding: 0; margin: 0; max-width: none; }
+.cat-drawer .catalogue ul { list-style: none; margin: 0; padding: 0; }
+.cat-drawer .catalogue > ul > li { margin: 6px 0; }
+.cat-drawer .catalogue a {
+  text-decoration: none; transition: color 0.15s; white-space: normal;
+  font-size: 0.8rem; letter-spacing: 0.08em; color: var(--text-mid);
+}
+.cat-drawer .catalogue a:hover { color: var(--red); }
+.cat-drawer .catalogue a.current { color: var(--white); }
+.cat-drawer .toc-line {
+  display: block; position: relative; line-height: 1.95;
+  padding-left: 1.6em; text-indent: -1.6em;
+}
+.cat-drawer .toc-line .leader { display: none; }
+.cat-drawer .toc-line .leader-dots {
+  position: absolute; white-space: nowrap; overflow: hidden;
+  color: #555555; letter-spacing: 0.1em; pointer-events: none;
+}
+.cat-tab {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  background: #0a0a0a; border: 2px solid var(--red); border-right: none;
+  color: var(--white); cursor: pointer; padding: 16px 9px 20px;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.55);
+  transition: background 0.2s, color 0.2s; -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+}
+.cat-tab:hover { background: var(--red); color: #fff; }
+.cat-arrow {
+  font-size: 0.95rem; line-height: 1; color: var(--red);
+  transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), color 0.2s;
+}
+.cat-tab:hover .cat-arrow { color: #fff; }
+.cat-fab.open .cat-arrow { transform: rotate(180deg); }
+.cat-tab-label { writing-mode: vertical-rl; font-size: 0.74rem; letter-spacing: 0.16em; white-space: nowrap; }
+@media (max-width: 600px) {
+  .cat-tab { padding: 12px 6px 16px; }
+  .cat-tab-label { font-size: 0.66rem; letter-spacing: 0.12em; }
+  .cat-drawer { width: min(280px, 82vw); padding: 14px 14px 18px; }
+}
+
+/* ============================================================
+   [ADDED] 大红框外的三按钮操作条 (来自 story1)
+   ============================================================ */
+.page-actions {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 10px auto 0;
+  padding: 0 4px;
+  justify-content: initial;
+}
+.page-actions-center {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+.page-actions > .page-action-btn:nth-child(1) { justify-self: start; }
+.page-actions > .page-action-btn:nth-child(3) { justify-self: end; }
+.page-action-btn { margin-left: 0 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { inset: 0; width: 100%; height: 100%; animation: none !important; }
+  .cs-crt::before, .cs-crt::after, .cs-flicker { animation: none !important; }
+  .cover-container:hover::after, .cover-container:hover .cover-img { animation: none !important; }
+  .vhs-transition.show::after { animation: none !important; }
+  .cs-power { display: none !important; }
+  .site-title.cs-glitch::before, .site-title.cs-glitch::after,
+  .site-tagline::after, .notices-text:hover span b, .notices-text::before { animation: none !important; }
+}
+
+</style>
+<script>
+  (function () {
+    var html = document.documentElement;
+    var inIframe = false;
+    try { inIframe = (window.parent && window.parent !== window); } catch (e) { inIframe = true; }
+    if (!inIframe) return;
+    try {
+      if (window.parent.centendUnlocked === true) { html.className += ' cent-unlocked'; }
+    } catch (e) {
+      html.className += ' cent-checking';
+    }
+  })();
+</script>
+    <link rel="icon" type="image/png" href="../../background/centend.png">
+</head>
+<body>
+<div class="cs-crt"></div>
+<div class="cs-flicker"></div>
+<div class="vhs-transition" id="vhsTransition"></div>
+<a class="back-fab" href="../index.html" title="回到Interludes">
+  <svg class="back-fab-arrow" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="20" y1="12" x2="5" y2="12"></line><polyline points="11 18 5 12 11 6"></polyline></svg>
+  <span class="bf-normal">back</span><span class="bf-hover">Interludes</span>
+</a>
+
+
+<div class="gate-overlay" id="gateOverlay">
+  <div class="gate-modal" id="gateStep1">
+    <div class="gate-ornament">✦ ⚠ ✦</div>
+    <div class="gate-title">此为浣熊網路超超超超超超级机密内容，<br>请输入密码核实查验权限。</div>
+    <div class="gate-input-row">
+      <input type="password" class="gate-input" id="gatePassword" placeholder="• • • • • • • •" autocomplete="off" spellcheck="false">
+      <button type="button" class="gate-eye" id="gateEye" title="显示 / 隐藏密码">👁</button>
+    </div>
+    <div class="gate-error" id="gateError">浣熊们用怀疑的目光打量着你，请再试试？</div>
+    <div class="gate-actions">
+      <button type="button" class="gate-btn gate-btn-confirm" id="gateConfirm">
+        <span class="gate-lbl-normal">让我看看多机密</span><span class="gate-lbl-hover">确认</span>
+      </button>
+      <button type="button" class="gate-btn gate-btn-cancel" id="gateCancel">
+        <span class="gate-lbl-normal">假装什么都没发生</span><span class="gate-lbl-hover">放弃</span>
+      </button>
+    </div>
+  </div>
+  <div class="gate-modal hidden" id="gateStep2">
+    <div class="gate-ornament">✦</div>
+    <div class="gate-welcome-title">浣熊網路欢迎你！</div>
+    <button type="button" class="gate-enter-btn" id="gateEnter">谢谢你，浣熊，请笑纳刚浣洗过的棉花糖</button>
+  </div>
+</div>
+
+<div class="page" id="mainPage" style="visibility: hidden;">
+  <div class="inner">
+
+    <div class="cover-container" id="vhsCover" title="">
+      <img class="cover-img" src="../../background/title.jpg" alt="封面">
+    </div>
+
+    <div class="content">
+
+      <div class="cat-fab" id="catFab">
+        <div class="cat-drawer" id="catDrawer">
+          <div class="cat-drawer-title">✦ — Catalogue — 目录</div>
+          <nav class="catalogue">
+            <ul>
+              <li><div class="toc-line"><a class="cat-l2" href="index.html">Chapter 1</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch2.html">Chapter 2</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2 current" href="ch3.html">Chapter 3</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch4.html">Chapter 4</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch5.html">Chapter 5</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch6.html">Chapter 6</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch7.html">Chapter 7</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch8.html">Chapter 8</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch9.html">Chapter 9</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch10.html">Chapter 10</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch11.html">Chapter 11</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch12.html">Chapter 12</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch13.html">Chapter 13</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch14.html">Chapter 14</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch15.html">Chapter 15</a><span class="leader"></span></div></li>
+              <li><div class="toc-line"><a class="cat-l2" href="ch16.html">Chapter 16</a><span class="leader"></span></div></li>
+            </ul>
+          </nav>
+        </div>
+        <button class="cat-tab" id="catTab" type="button" onclick="toggleCat()" aria-label="目录 Catalogue">
+          <span class="cat-arrow">◀</span>
+          <span class="cat-tab-label">✦ — Catalogue — 目录</span>
+        </button>
+      </div>
+
+
+      <div style="height: 32px;"></div>
+      <hr class="divider-red-full" style="margin: 0 -32px;">
+      <div style="height: 4px;"></div>
+
+      <div class="sub-heading" id="ch3">
+        <h3><span class="mark">▷.</span> Chapter 3</h3>
+      </div>
+
+      <div class="custom-black-box">
+        <p>第二天清晨，艾伊罗和波菲尔特到达旅馆楼下等待导游的车辆。</p>
+        <p>大件行李被留在旅馆，两人只携带必要的换洗衣物轻装上阵，在等待的间隙里波菲尔特已经显露出难以掩饰的兴致，他在旅馆外道路两侧的摊贩之间来回穿梭，最终带回十二个动物形态的小型乌木雕，以及一件高约五十厘米的生命之树。两人将这些木雕搬回房间，再次下楼时恰好来接他们两人的导游们到了，短暂的寒暄之后，他们一起先后去接了另外旅馆的一家三口和背包客，最后一行人重新上路。</p>
+        <p>车子驶出阿鲁沙，城市的轮廓很快被抛在身后，道路开始缓慢攀升，空气逐渐转凉，远处的地形不再平缓，起伏的高地一层层展开，颜色从深绿过渡到暗褐，他们进入了恩戈罗恩戈罗高地。</p>
+        <p>这里的空气带着明显不同的湿度与冷意，草地更加浓密，偶尔有云雾停留在山体之间，像尚未散去的呼吸，车辆在崎岖的道路上前行，车身随之颠簸，金属结构发出持续的碰撞声。艾伊罗靠在座位上，看着窗外的景象不断后退，波菲尔特则贴近他闭目养神，他身上那种薄荷药膏的清凉气味依旧过于浓烈，以一种暧昧的姿态笼罩着艾伊罗。</p>
+        <p>车子最终驶向更低的地势，空气重新变得干燥。当他们真正进入塞伦盖蒂国家公园时，视野才算是被彻底打开，草原铺展至地平线尽头，颜色在阳光下显得单一但又如此壮阔，风沿着地表滑动，带动草浪缓慢起伏，天空高远而空旷，仅有几只鸟在远处盘旋，整个空间辽阔得让人类的存在显得轻微。波菲尔特立刻取出望远镜递给艾伊罗，两人就这样安静地观察着远处的生灵――那些在欧洲和北美的钢筋水泥组成的生态中无法出现的生命在这里以另一种方式存在。</p>
+        <p>车停在一处固定营地，四顶帐篷已经提前搭好，最后在商讨下，司机与一家三口共用一顶大帐篷，另外两名导游和背包客一顶，艾伊罗与波菲尔特单独一顶。</p>
+        <p>导游在营地中央集合众人。那名会德语的坦桑尼亚人站在前方，语气比前一日更为严肃。他开始宣读这片土地的生杀准则。那些关于荒野的禁忌被译成英语，穿过干冷的空气，落进每个人的耳朵里：这里的安全只是暂时的假象――夜晚周边可能会有巡游的野兽，或许还有比野兽更贪婪的偷猎者。气味、噪音、甚至是一束不安分的电筒光，在这片黑暗里都像是敲响的丧钟。所以每个人都严禁单独离开营地，严禁在夜间游荡。</p>
+        <p>“那如果真的有野兽摸过来，打算攻击我们呢？”那家三口里的女儿突然插了一句。她的语气轻飘飘的，带着那种文明世界养出来的、不知死活的好奇。</p>
+        <p>负责翻译的导游沉默了片刻。他没有立刻回答，而是慢条斯理地从车的后备箱里的箱子里取出了一支双管步枪。枪身在烈日下折射出一道刺眼的白光。他没有拉动枪栓，也没有吹嘘这玩意的口径，只是让它在众人视线里停留了几秒，随即稳稳收回。</p>
+        <p>“这是最后的手段。”他低声说，眼神掠过远处的灌木丛，“我们爱这些生灵，也尊重这里的秩序。只要他们不主动袭击，我们绝不平白无故地扣动扳机。”</p>
+        <p>而众人最初因为女儿的这个问题产生了一瞬间的紧张，在看到导游展示步枪后情绪才逐渐放松。没错啊，这是当然不必过分忧虑的事情，毕竟在人类的工具与火药面前，动物带来的危险当然只是某种小打小闹。</p>
+        <p>艾伊罗的目光却停留在那支枪上，心中浮现出一种隐约的不适――他与波菲尔特此刻没有携带任何武器，在这片好似没有边界的陌生土地上，他们所依赖的只是三个自称导游的来历并不完全清晰的人，以及一句模糊的承诺，这让他在多年过后再一次位于了某种被动位上，这种轻微的失控感紧紧贴附在意识表层，像一层无法剥离的异物，使他一时间难以放下始终保持着的警觉。</p>
+        <p>毕竟他向来习惯于掌握一切的局面，在熟悉的城市与制度之中，他能够将一切纳入可控范围。虽然比较带有黑色幽默风味的是：在那种城市与制度中，他和波菲尔特反而才是一直在制造死亡与混乱的人。不过……好吧，总之，哪怕一直以来面对的都是死亡与混乱，他们两人也总能找到一条足以支撑理性的路径，而此刻这种能力却被无声剥离，他所面对的不再是可以被拆解与归类的对象，而是一整片无法穷尽的空间，一种没有边界、没有秩序、也没有明确因果的存在。</p>
+        <p>风从草原深处吹来，带着温热与干燥的气息，地平线安静延展，没有任何急于显现的变化，一切都显得稳定有序，同时又隐约指向某种尚未到来的事物。</p>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="page-actions">
+    <button class="page-action-btn" onclick="goChapter('ch2.html')" title="Chapter 2">
+      <span class="lbl-normal">Chapter 2</span><span class="lbl-hover">◀ Chapter 2</span>
+    </button>
+    <div class="page-actions-center">
+      <button class="page-action-btn" onclick="centScrollTop()" title="回到本页顶端">
+        <span class="lbl-normal">Rewind</span><span class="lbl-hover">TOP</span>
+      </button>
+    </div>
+    <button class="page-action-btn" onclick="goChapter('ch4.html')" title="Chapter 4">
+      <span class="lbl-normal">Chapter 4</span><span class="lbl-hover">Chapter 4 ▶</span>
+    </button>
+  </div>
+
+  <div class="end-mark">
+    <span class="ornament">✦</span>
+    © ???? - 2026 Tvättbjörnsnätväg<br>
+Thank you for watching. <br><br>
+Care for some tea? Ingredients:<br>
+50% raccoon spine, 50% love. Guaranteed... unforgettable.<br>
+愛來自浣熊網路
+  </div>
+</div>
+
+<div class="raccoon-modal-overlay" id="raccoonOverlay">
+  <div class="raccoon-modal">
+    <div class="raccoon-modal-text">已到达浣熊的地洞，无上一页内容🦝</div>
+    <div class="raccoon-modal-btns">
+      <button class="raccoon-btn" onclick="closeRaccoonModal()">浣熊好！</button>
+      <button class="raccoon-btn" onclick="closeRaccoonModal()">浣熊好！</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var PASSWORD = "TrytoSaveMySoulTonight";
+
+    var overlay  = document.getElementById('gateOverlay');
+    var step1    = document.getElementById('gateStep1');
+    var step2    = document.getElementById('gateStep2');
+    var input    = document.getElementById('gatePassword');
+    var eyeBtn   = document.getElementById('gateEye');
+    var errorBox = document.getElementById('gateError');
+    var confirmBtn = document.getElementById('gateConfirm');
+    var cancelBtn  = document.getElementById('gateCancel');
+    var enterBtn   = document.getElementById('gateEnter');
+    var mainPage   = document.getElementById('mainPage');
+    var html       = document.documentElement;
+
+    var inIframe = false;
+    try { inIframe = (window.parent && window.parent !== window); } catch (e) { inIframe = true; }
+
+    function reveal() {
+      html.classList.remove('cent-checking');
+      overlay.classList.add('hidden');
+      mainPage.style.visibility = 'visible';
+      if (window.__centOnReveal) { try { window.__centOnReveal(); } catch (e) {} }
+    }
+    function showGate() {
+      html.classList.remove('cent-checking');
+      if (input) { setTimeout(function () { input.focus(); }, 60); }
+    }
+    function markUnlocked() {
+      try { if (inIframe) window.parent.centendUnlocked = true; } catch (e) {}
+      try { if (inIframe) window.parent.postMessage({ cent: 'set-unlock' }, '*'); } catch (e) {}
+    }
+
+    (function decideUnlock() {
+      var decided = false;
+      try {
+        if (inIframe && window.parent.centendUnlocked === true) { reveal(); decided = true; }
+        else if (inIframe) { showGate(); decided = true; }
+      } catch (e) {}
+
+      if (decided) return;
+      if (!inIframe) { showGate(); return; }
+
+      var settled = false;
+      function onMsg(ev) {
+        var d = ev.data;
+        if (!d || typeof d !== 'object' || d.cent !== 'unlock-state') return;
+        settled = true;
+        window.removeEventListener('message', onMsg);
+        if (d.unlocked) reveal(); else showGate();
+      }
+      window.addEventListener('message', onMsg);
+      try { window.parent.postMessage({ cent: 'query-unlock' }, '*'); } catch (e) {}
+      setTimeout(function () {
+        if (!settled) { window.removeEventListener('message', onMsg); showGate(); }
+      }, 500);
+    })();
+
+    eyeBtn.addEventListener('click', function () {
+      if (input.type === 'password') { input.type = 'text'; eyeBtn.textContent = '🙈'; }
+      else { input.type = 'password'; eyeBtn.textContent = '👁'; }
+      input.focus();
+    });
+
+    function checkPassword() {
+      if (input.value === PASSWORD) {
+        markUnlocked();
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+      } else {
+        errorBox.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    input.addEventListener('input', function () { errorBox.classList.remove('show'); });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { checkPassword(); } });
+    confirmBtn.addEventListener('click', checkPassword);
+    cancelBtn.addEventListener('click', function () { history.back(); });
+    enterBtn.addEventListener('click', function () { reveal(); });
+  })();
+
+  var racOverlay = document.getElementById('raccoonOverlay');
+  function showRaccoonModal() { racOverlay.classList.add('show'); }
+  function closeRaccoonModal() { racOverlay.classList.remove('show'); }
+
+  /* ---- [ADDED] 温和换屏过渡 ---- */
+  var __vhsT = document.getElementById('vhsTransition');
+  var __reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function goChapter(url) {
+    if (!url) { return; }
+    if (__reduceMotion || !__vhsT) { window.location.href = url; return; }
+    __vhsT.classList.add('show');
+    setTimeout(function () { window.location.href = url; }, 430);
+  }
+
+  /* ---- [ADDED] 侧边目录抽屉 (story1 风格) ---- */
+  function toggleCat() {
+    var fab = document.getElementById('catFab');
+    if (fab) {
+      fab.classList.toggle('open');
+      if (fab.classList.contains('open')) { requestAnimationFrame(fillLeaders); }
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var fab = document.getElementById('catFab');
+    if (!fab || !fab.classList.contains('open')) { return; }
+    if (!fab.contains(e.target)) { fab.classList.remove('open'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var fab = document.getElementById('catFab');
+      if (fab) { fab.classList.remove('open'); }
+    }
+  });
+  document.querySelectorAll('.cat-drawer .catalogue a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      var fab = document.getElementById('catFab');
+      if (fab) { fab.classList.remove('open'); }
+      if (href && href.charAt(0) === '#') {
+        e.preventDefault();
+        var el = document.getElementById(href.slice(1));
+        if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        return;
+      }
+      e.preventDefault();
+      goChapter(href);
+    });
+  });
+
+  /* ---- [ADDED] 目录虚线 leader ---- */
+  function fillLeaders() {
+    var lines = document.querySelectorAll('.cat-drawer .toc-line');
+    lines.forEach(function (line) {
+      var a = line.querySelector('a');
+      if (!a) { return; }
+      var dots = line.querySelector('.leader-dots');
+      if (!dots) {
+        dots = document.createElement('span');
+        dots.className = 'leader-dots';
+        dots.setAttribute('aria-hidden', 'true');
+        line.appendChild(dots);
+      }
+      dots.style.display = 'none';
+      var rects = a.getClientRects();
+      if (!rects.length) { return; }
+      var lineRect = line.getBoundingClientRect();
+      var last = rects[rects.length - 1];
+      var startX = last.right - lineRect.left + 7;
+      var available = lineRect.width - startX;
+      if (available < 16) { return; }
+      dots.style.display = 'block';
+      dots.style.left = startX + 'px';
+      dots.style.top = (last.top - lineRect.top) + 'px';
+      dots.style.height = last.height + 'px';
+      dots.style.lineHeight = last.height + 'px';
+      dots.style.width = available + 'px';
+      var count = Math.ceil(available / 4) + 6;
+      dots.textContent = new Array(count + 1).join('\u00B7');
+    });
+  }
+  var __leaderTimer;
+  window.addEventListener('resize', function () { clearTimeout(__leaderTimer); __leaderTimer = setTimeout(fillLeaders, 80); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fillLeaders); }
+  setTimeout(fillLeaders, 60);
+
+  function centScrollTop() {
+    var p = document.querySelector('.page');
+    if (p) { p.scrollTo({ top: 0, behavior: 'smooth' }); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function goStory(url) { window.location.href = url; }
+  function centGoBack() { history.back(); }
+
+  /* ---- [ADDED · chapter] 进入时温和淡入 (无白屏开机) ---- */
+  window.__centOnReveal = function () {
+    if (__reduceMotion || !__vhsT) { return; }
+    __vhsT.classList.add('show');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { __vhsT.classList.remove('show'); });
+    });
+  };
+
+</script>
+<!-- [ADDED] reading-position memory / 阅读位置记忆 (scroll-restore) -->
+<script data-centend-scrollmem="1">
+(function () {
+  var scroller = document.querySelector('.page');
+  if (!scroller) return;                       // 没有 .page 滚动容器的页面不处理
+  var KEY = 'centend:scrollpos:' + location.pathname;
+
+  function save() {
+    try { sessionStorage.setItem(KEY, String(scroller.scrollTop)); } catch (e) {}
+  }
+  function restore() {
+    if (location.hash) return;                 // 带锚点跳转时不干预，尊重锚点
+    var v;
+    try { v = sessionStorage.getItem(KEY); } catch (e) { return; }
+    if (v == null || v === '') return;
+    var y = parseFloat(v);
+    if (!isNaN(y) && y > 0) scroller.scrollTop = y;
+  }
+
+  // 保存：滚动时（rAF 节流）+ 页面隐藏/离开时
+  var ticking = false;
+  scroller.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { save(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('pagehide', save);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') save();
+  });
+
+  // 记录用户是否已主动滚动（图片加载完成后是否需要再次校正）
+  var userScrolled = false;
+  ['wheel', 'touchmove', 'keydown', 'mousedown'].forEach(function (ev) {
+    scroller.addEventListener(ev, function () { userScrolled = true; }, { passive: true });
+  });
+
+  // 恢复：DOM 就绪、资源加载完成、以及从 bfcache 返回时
+  function restoreSoon() {
+    requestAnimationFrame(function () { requestAnimationFrame(restore); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', restoreSoon);
+  } else {
+    restoreSoon();
+  }
+  // 图片等资源会改变内容高度，若用户尚未主动滚动则在 load 后再校正一次
+  window.addEventListener('load', function () { if (!userScrolled) restore(); });
+  // 浏览器“返回”从 bfcache 还原页面时触发
+  window.addEventListener('pageshow', function () { if (!userScrolled) restore(); });
+})();
+</script>
+</body>
+</html>
